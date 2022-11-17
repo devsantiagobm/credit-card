@@ -1,0 +1,164 @@
+.card {
+    --url: url("./images/bg-main-desktop.png");
+    background-image: var(--url);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: var(--cards-width);
+    min-height: 100vh;
+    color: var(--white);
+    animation: card-bg-animation 9s infinite ease;
+
+    @keyframes card-bg-animation {
+
+        0%,
+        100% {
+            background-size: 200% 100%;
+        }
+
+        25% {
+            background-size: 100% 150%;
+        }
+
+        50% {
+            background-size: 120% 190%;
+        }
+
+        75% {
+            background-size: 180% 200%;
+        }
+    }
+
+
+    &__box {
+        position: relative;
+    }
+
+    &__main {
+        --y: 10vh;
+        --x: 4vw;
+        position: absolute;
+        transform: translateY(var(--y)) translateX(var(--x));
+    }
+
+    &__picture {
+        --y: 55vh;
+        --x: 9vw;
+        position: absolute;
+        transform: translateY(var(--y)) translateX(var(--x));
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+    }
+
+    &__information {
+        position: relative;
+    }
+
+    &__content {
+        padding: 28px 32px;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: absolute;
+    }
+
+    &__circles {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    &__circle {
+        --w: 40px;
+        --bg: var(--white);
+        width: var(--w);
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background-color: var(--bg);
+
+        &--small {
+            --w: 24px;
+            --bg: transparent;
+            aspect-ratio: 1;
+            border: solid 1px var(--white);
+        }
+    }
+
+    &__image {
+        max-width: clamp(350px, 30vw, 400px);
+        user-select: none;
+    }
+
+    &__data {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    &__number {
+        letter-spacing: 1px;
+        word-spacing: 3px;
+        font-size: clamp(1.4rem, 2vw, 1.7rem);
+        font-weight: 400;
+        max-width: 100%;
+    }
+
+    &__flex {
+        font-weight: 400;
+        text-transform: uppercase;
+        font-size: .85rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    &__name{
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@mixin m-992px {
+    .card {
+
+        &__picture {
+            --x: 4vw;
+        }
+    }
+}
+
+@mixin m-892px {
+    .card {
+        --url: url("./images/bg-main-mobile.png");
+        width: 100%;
+        min-height: 0vh;
+        height: 50vh;
+
+        &__picture{
+            display: none;
+        }
+        
+        &__main{
+            z-index: 2;
+            --y: 50%;
+            --x: calc(50vw - 175px);
+        }
+    }
+}
+
+@mixin m-512px{
+    .card{
+        &__image{
+            max-width:300px;
+        }
+        
+        &__main{
+            --x: calc(50vw - 150px);
+        }
+
+        &__number{
+            font-size: 1.1rem;
+        }
+    }
+}
